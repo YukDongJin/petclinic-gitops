@@ -18,6 +18,13 @@ spec:
           image: 730335394111.dkr.ecr.ap-northeast-2.amazonaws.com/petclinic:v1
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "1000m"
+              memory: "2Gi"
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "postgres"

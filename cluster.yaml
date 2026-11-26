@@ -1,0 +1,31 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: petclinic-eks
+  region: ap-northeast-2
+  version: "1.34"
+
+vpc:
+  subnets:
+    private:
+      ap-northeast-2a:
+        id: subnet-0231aac116fbdace6
+      ap-northeast-2c:
+        id: subnet-0cb1e446684f5317b
+
+iam:
+  withOIDC: true  # ALB Controller, ESO, Autoscaler 연동을 위해 OIDC 자동 활성화
+
+managedNodeGroups:
+  - name: petclinic-ng
+    instanceType: t3.large
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 3
+    privateNetworking: true
+    iam:
+      withAddonPolicies:
+        autoScaler: true      # Cluster Autoscaler용 IAM 권한 자동 부여
+        albIngress: true      # ALB Controller용 기본 권한
+        cloudWatch: true
