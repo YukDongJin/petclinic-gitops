@@ -35,11 +35,11 @@ spec:
                   name: petclinic-db-secret
                   key: password
             - name: ORA_DSN
-              value: "<내_집_공인_IP>:1521/PETCLINICDB1"
+              value: "182.226.30.54:1521/PETCLINICDB1"
             - name: ORA_USER
               value: "dongjin"
             - name: ORA_PASS
-              value: "<ORACLE_DONGJIN_PASSWORD>"
+              value: "Samta306305!"
           command: ["/bin/sh", "-c"]
           args:
             - |
